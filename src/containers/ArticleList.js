@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import Artilce from '../components/Article'
-import { getArticles } from '../actions/articlesActions'
+import Article from '../components/Article'
 
 
 class ArticleList extends Component {
 
     componentDidMount() {
-        this.props.getArticles();
+        console.log(this.props.articles)
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="App">
-                <Article />
+                { this.props.articles.map(article => {
+                    return (
+                        <Article title={article.title}
+                                 snippet={article.snippet}
+                                 key={article.pageid}
+                        />
+                    )
+                })}
             </div>
         );
     }
@@ -27,13 +32,6 @@ const mapStateToProps = store => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getArticles: () => dispatch(getArticles()),
-    }
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(ArticleList)

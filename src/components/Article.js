@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 class Article extends Component {
     render() {
         return (
-            <div className="App">
-                <h2>Article</h2>
+            <div>
+                <h2>{this.props.title}</h2>
+                <p dangerouslySetInnerHTML={{__html: this.props.snippet}}/>
             </div>
         );
     }

@@ -8,7 +8,7 @@ export const GET_ARTICLES_FAIL = 'GET_ARTICLES_FAIL';
 const url = "https://en.wikipedia.org/w/api.php?"
 
 
-export const getArticles = () => {
+export const getArticles = (inputValue) => {
     return function (dispatch) {
         dispatch ({
             type:  GET_ARTICLES_REQUEST
@@ -17,13 +17,12 @@ export const getArticles = () => {
             params: {
                 action: 'query',
                 list: 'search',
-                srsearch: 'Nelson Mandela',
+                srsearch: inputValue,
                 utf8: '',
                 format: 'json',
                 origin: '*' ,
             }
             }).then(resourse => {
-                console.log(resourse)
                 if (resourse.status === 200){
                     if (resourse.headers['mediawiki-api-error'] === undefined) {
                         dispatch({
@@ -46,7 +45,7 @@ export const getArticles = () => {
             })
                 .catch(error => {
                     throw(error.response);
-                });
+                })
 
     }
-};
+}

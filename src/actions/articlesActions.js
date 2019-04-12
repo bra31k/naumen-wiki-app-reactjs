@@ -8,7 +8,7 @@ export const GET_ARTICLES_FAIL = 'GET_ARTICLES_FAIL';
 const url = "https://en.wikipedia.org/w/api.php?"
 
 
-export const getArticles = (inputValue) => {
+export const getArticles = (inputValue, sort) => {
     return function (dispatch) {
         dispatch ({
             type:  GET_ARTICLES_REQUEST
@@ -21,6 +21,7 @@ export const getArticles = (inputValue) => {
                 utf8: '',
                 format: 'json',
                 origin: '*' ,
+                srsort: sort,
             }
             }).then(resourse => {
                 if (resourse.status === 200){

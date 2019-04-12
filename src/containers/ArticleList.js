@@ -6,13 +6,9 @@ import Article from '../components/Article'
 
 class ArticleList extends Component {
 
-    componentDidMount() {
-        console.log(this.props.articles)
-    }
-
     render() {
         return (
-            <div className="App">
+            <div>
                 { this.props.articles.map(article => {
                     return (
                         <Article title={article.title}

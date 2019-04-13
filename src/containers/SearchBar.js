@@ -5,18 +5,35 @@ import { getArticles } from '../actions/articlesActions'
 import '../style/SearchBar.css'
 
 
+
 class SearchBar extends Component {
 
     constructor(props) {
+
         super(props)
         this.state = {
             inputValue: "",
             sort: "relevance",
+            suggestion: [],
         }
 
         this.handleChangeText = this.handleChangeText.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.suggestionClick = this.suggestionClick.bind(this)
+    }
+
+    // componentDidMount() {
+    //     if (localStorage.getItem('naumen-wiki-app')) {
+    //         let suggestion = localStorage.getItem('naumen-wiki-app').split(",")
+    //         this.setState(prevState => ({
+    //             suggestion: [...prevState.suggestion, suggestion]
+    //         }))
+    //     }
+    // }
+
+    suggestionClick(event) {
+        // console.log(event.currentTarget.id)
     }
 
     handleChangeText(event) {
@@ -30,7 +47,18 @@ class SearchBar extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        this.props.getArticles(this.state.inputValue, this.state.sort)
+        const { inputValue, sort, suggestion } = this.state
+        this.props.getArticles(inputValue, sort)
+        if (!suggestion.includes(inputValue)) {
+            if (suggestion.length >= 3) {
+                this.setState({
+                    suggestion: suggestion.splice(1)
+                })
+            }
+            this.setState(prevState => ({
+                suggestion: [...prevState.suggestion, inputValue]
+            }))
+        }
     }
 
     render() {
@@ -43,6 +71,15 @@ class SearchBar extends Component {
                         value={this.state.inputValue}
                         placeholder="Искать здесь..."
                     />
+                    <ul>
+                        {this.state.inputValue.length > 0
+                            ? this.state.suggestion.map(sug => (
+                            <li key={this.state.suggestion.indexOf(sug)} onClick={this.suggestionClick}>
+                                {sug}
+                            </li>
+                            ))
+                            : null}
+                    </ul>
                         <button type="submit"/>
                 </form>
                 <select value={this.state.sort} onChange={this.handleChangeSelect}>
@@ -68,6 +105,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null,
-    mapDispatchToProps
-)(SearchBar)
+export default connect(null, mapDispatchToProps)(SearchBar)

@@ -7,13 +7,15 @@ import Article from '../components/Article'
 class ArticleList extends Component {
 
     render() {
+        console.log(this.props)
         return (
             <div>
-                { this.props.articles.map(article => {
+                { this.props.articles.isLoading ? <p>Загружаю....</p>: this.props.articles.articles.map(article => {
                     return (
-                        <Article title={article.title}
-                                 snippet={article.snippet}
-                                 key={article.pageid}
+                        <Article
+                            title={article.title}
+                            snippet={article.snippet}
+                            key={article.pageid}
                         />
                     )
                 })}
@@ -24,7 +26,7 @@ class ArticleList extends Component {
 
 const mapStateToProps = store => {
     return {
-        articles: store.articles,
+        articles: store,
     }
 }
 

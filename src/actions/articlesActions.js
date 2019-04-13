@@ -9,6 +9,7 @@ const url = "https://en.wikipedia.org/w/api.php?"
 
 
 export const getArticles = (inputValue, sort) => {
+    console.log('request')
     return function (dispatch) {
         dispatch ({
             type:  GET_ARTICLES_REQUEST

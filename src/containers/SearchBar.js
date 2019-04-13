@@ -32,23 +32,30 @@ class SearchBar extends Component {
     //     }
     // }
 
-    suggestionClick(event) {
-        // console.log(event.currentTarget.id)
+
+    suggestionClick(value) {
+        this.setState({
+            inputValue: value
+        })
+        this.props.getArticles(value, this.state.sort)
     }
 
     handleChangeText(event) {
-        this.setState({inputValue: event.target.value})
+        this.setState({
+            inputValue: event.target.value
+        })
     }
 
     handleChangeSelect(event) {
-        this.setState({sort: event.target.value})
+        this.setState({
+            sort: event.target.value
+        })
         this.props.getArticles(this.state.inputValue, event.target.value)
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        const { inputValue, sort, suggestion } = this.state
-        this.props.getArticles(inputValue, sort)
+        const { inputValue, suggestion } = this.state
         if (!suggestion.includes(inputValue)) {
             if (suggestion.length >= 3) {
                 this.setState({
@@ -59,6 +66,7 @@ class SearchBar extends Component {
                 suggestion: [...prevState.suggestion, inputValue]
             }))
         }
+        this.props.getArticles(this.state.inputValue, this.state.sort)
     }
 
     render() {
@@ -74,7 +82,9 @@ class SearchBar extends Component {
                     <ul>
                         {this.state.inputValue.length > 0
                             ? this.state.suggestion.map(sug => (
-                            <li key={this.state.suggestion.indexOf(sug)} onClick={this.suggestionClick}>
+                            <li key={this.state.suggestion.indexOf(sug)}
+                                onClick={() => this.suggestionClick(sug)}
+                            >
                                 {sug}
                             </li>
                             ))

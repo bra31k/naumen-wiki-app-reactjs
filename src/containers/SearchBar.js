@@ -25,7 +25,7 @@ class SearchBar extends Component {
 
     handleChangeSelect(event) {
         this.setState({sort: event.target.value})
-        this.props.getArticles(this.state.inputValue, this.state.sort)
+        this.props.getArticles(this.state.inputValue, event.target.value)
     }
 
     handleSubmit(event) {

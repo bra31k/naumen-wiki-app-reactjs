@@ -15,76 +15,89 @@ class SearchBar extends Component {
             inputValue: "",
             sort: "relevance",
             suggestion: [],
+            shouldSuggestion: false,
         }
 
-        this.handleChangeText = this.handleChangeText.bind(this)
+        this.inputClick = this.inputClick.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.suggestionClick = this.suggestionClick.bind(this)
     }
 
-    // componentDidMount() {
-    //     if (localStorage.getItem('naumen-wiki-app')) {
-    //         let suggestion = localStorage.getItem('naumen-wiki-app').split(",")
-    //         this.setState(prevState => ({
-    //             suggestion: [...prevState.suggestion, suggestion]
-    //         }))
-    //     }
-    // }
+    componentDidMount() {
+        if (localStorage.getItem('naumen-wiki-app')) {
+            let suggestion = JSON.parse(localStorage.getItem('naumen-wiki-app'))
+            suggestion.map(sug => {
+                this.setState(prevState => ({
+                    suggestion: [...prevState.suggestion, sug]
+                }))
+            })
+        }
+    }
 
+    componentDidUpdate(prevState) {
+        if (prevState !== this.state && this.state.inputValue.length > 0){
+            this.props.getArticles(this.state.inputValue, this.state.sort)
+            localStorage.setItem('naumen-wiki-app', JSON.stringify(this.state.suggestion))
+        }
+    }
 
     suggestionClick(value) {
         this.setState({
             inputValue: value
         })
-        this.props.getArticles(value, this.state.sort)
     }
 
-    handleChangeText(event) {
-        this.setState({
-            inputValue: event.target.value
-        })
-    }
 
     handleChangeSelect(event) {
         this.setState({
             sort: event.target.value
         })
-        this.props.getArticles(this.state.inputValue, event.target.value)
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault()
-        const { inputValue, suggestion } = this.state
-        if (!suggestion.includes(inputValue)) {
-            if (suggestion.length >= 3) {
+        const inputValue = event.target.searchWiki.value;
+        this.setState({
+            inputValue: inputValue
+        })
+        if (!this.state.suggestion.includes(inputValue))
+        {
+            if (this.state.suggestion.length >= 3) {
                 this.setState({
-                    suggestion: suggestion.splice(1)
+                    suggestion: this.state.suggestion.splice(1),
                 })
             }
             this.setState(prevState => ({
-                suggestion: [...prevState.suggestion, inputValue]
+                suggestion: [...prevState.suggestion, inputValue],
             }))
         }
-        this.props.getArticles(this.state.inputValue, this.state.sort)
     }
+
+    inputClick() {
+        this.setState({
+            shouldSuggestion: !this.state.shouldSuggestion
+        })
+    }
+
+
 
     render() {
         return (
             <div className="App">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input
                         type="text"
-                        onChange={this.handleChangeText}
-                        value={this.state.inputValue}
+                        name="searchWiki"
                         placeholder="Искать здесь..."
+                        autoComplete="off"
+                        onClick={this.inputClick}
                     />
                     <ul>
-                        {this.state.inputValue.length > 0
+                        {this.state.shouldSuggestion
                             ? this.state.suggestion.map(sug => (
                             <li key={this.state.suggestion.indexOf(sug)}
-                                onClick={() => this.suggestionClick(sug)}
-                            >
+                                onClick={() => this.suggestionClick(sug)}>
                                 {sug}
                             </li>
                             ))

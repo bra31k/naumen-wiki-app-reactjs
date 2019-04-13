@@ -7,18 +7,19 @@ import Article from '../components/Article'
 class ArticleList extends Component {
 
     render() {
-        console.log(this.props)
         return (
             <div>
-                { this.props.articles.isLoading ? <p>Загружаю....</p>: this.props.articles.articles.map(article => {
-                    return (
-                        <Article
-                            title={article.title}
-                            snippet={article.snippet}
-                            key={article.pageid}
-                        />
-                    )
-                })}
+                { this.props.articles.isLoading
+                    ? <p>Загружаю....</p>
+                    : this.props.articles.error.length === 0 ? this.props.articles.articles.map(article => {
+                        return (
+                            <Article
+                                title={article.title}
+                                snippet={article.snippet}
+                                key={article.pageid}
+                            />
+                        )})
+                        : <p>Произошла ошибка: {this.props.articles.error}</p>}
             </div>
         );
     }

@@ -11,12 +11,12 @@ class ArticleList extends Component {
             <div>
                 { this.props.articles.isLoading
                     ? <p>Загружаю....</p>
-                    : this.props.articles.error.length === 0 ? this.props.articles.articles.map(article => {
+                    : this.props.articles.error.length === 0 ? this.props.articles.articles.map((article, index) => {
                         return (
                             <Article
                                 title={article.title}
                                 snippet={article.snippet}
-                                key={article.pageid}
+                                key={index}
                             />
                         )})
                         : <p>Произошла ошибка: {this.props.articles.error}</p>}

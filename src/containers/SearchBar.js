@@ -14,6 +14,7 @@ class SearchBar extends Component {
         this.state = {
             inputValue: "",
             sort: "relevance",
+            sroffset: 0,
             suggestion: [],
             shouldSuggestion: false,
         }
@@ -27,31 +28,47 @@ class SearchBar extends Component {
     componentDidMount() {
         if (localStorage.getItem('naumen-wiki-app')) {
             let suggestion = JSON.parse(localStorage.getItem('naumen-wiki-app'))
-            suggestion.map(sug => {
+            suggestion.forEach(sug => {
                 this.setState(prevState => ({
                     suggestion: [...prevState.suggestion, sug]
                 }))
             })
         }
+        window.addEventListener('scroll', this.onScroll, false);
     }
 
     componentDidUpdate(prevState) {
         if (prevState !== this.state && this.state.inputValue.length > 0){
-            this.props.getArticles(this.state.inputValue, this.state.sort)
+            this.props.getArticles(this.state.inputValue, this.state.sort, this.state.sroffset)
             localStorage.setItem('naumen-wiki-app', JSON.stringify(this.state.suggestion))
         }
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll, false);
+    }
+
+    onScroll = () => {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight + 24)) {
+            this.setState({
+                sroffset: this.state.sroffset + 10
+            })
+        }
+    }
+
+
     suggestionClick(value) {
         this.setState({
-            inputValue: value
+            inputValue: value,
+            sroffset: 0,
         })
     }
 
 
     handleChangeSelect(event) {
         this.setState({
-            sort: event.target.value
+            sort: event.target.value,
+            sroffset: 0,
         })
     }
 
@@ -59,7 +76,8 @@ class SearchBar extends Component {
         event.preventDefault()
         const inputValue = event.target.searchWiki.value;
         this.setState({
-            inputValue: inputValue
+            inputValue: inputValue,
+            sroffset: 0,
         })
         if (!this.state.suggestion.includes(inputValue))
         {
@@ -124,7 +142,7 @@ class SearchBar extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getArticles: (inputValue, sort) => dispatch(getArticles(inputValue, sort)),
+        getArticles: (inputValue, sort, sroffset) => dispatch(getArticles(inputValue, sort, sroffset)),
     }
 }
 

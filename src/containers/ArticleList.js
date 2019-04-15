@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
+import PropTypes from "prop-types"
 
 import Article from '../components/Article'
 
 
-class ArticleList extends Component {
-
-    render() {
+const ArticleList = ({articles}) => {
         return (
             <div>
-                { this.props.articles.isLoading
+                {articles.isLoading
                     ? <p>Загружаю....</p>
-                    : this.props.articles.error.length === 0 ? this.props.articles.articles.map((article, index) => {
+                    : articles.error.length === 0 ? articles.articles.map((article, index) => {
                         return (
                             <Article
                                 title={article.title}
@@ -19,11 +18,18 @@ class ArticleList extends Component {
                                 key={index}
                             />
                         )})
-                        : <p>Произошла ошибка: {this.props.articles.error}</p>}
+                        : <p>Произошла ошибка: {articles.error}</p>}
             </div>
         );
-    }
 }
+
+ArticleList.propTypes = {
+    isLoading: PropTypes.bool,
+    error: PropTypes.string,
+    articles: PropTypes.object,
+    title: PropTypes.string,
+    snipped: PropTypes.string,
+};
 
 const mapStateToProps = store => {
     return {

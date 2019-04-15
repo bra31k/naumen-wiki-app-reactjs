@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import connect from "react-redux/es/connect/connect"
+import PropTypes from "prop-types"
 
 import { getArticles } from '../actions/articlesActions'
 import '../style/SearchBar.css'
+
 
 
 
@@ -14,7 +16,7 @@ class SearchBar extends Component {
         this.state = {
             inputValue: "",
             sort: "relevance",
-            sroffset: 0,
+            sroffset: 10,
             suggestion: [],
             shouldSuggestion: false,
         }
@@ -37,8 +39,12 @@ class SearchBar extends Component {
         window.addEventListener('scroll', this.onScroll, false);
     }
 
-    componentDidUpdate(prevState) {
-        if (prevState !== this.state && this.state.inputValue.length > 0){
+    componentDidUpdate(prevProps, prevState) {
+        if ((prevState.inputValue !== this.state.inputValue
+            || prevState.sort !== this.state.sort
+            || prevState.sroffset !== this.state.sroffset )
+            && this.state.inputValue.length > 0)
+        {
             this.props.getArticles(this.state.inputValue, this.state.sort, this.state.sroffset)
             localStorage.setItem('naumen-wiki-app', JSON.stringify(this.state.suggestion))
         }
@@ -56,7 +62,6 @@ class SearchBar extends Component {
         }
     }
 
-
     suggestionClick(value) {
         this.setState({
             inputValue: value,
@@ -64,8 +69,7 @@ class SearchBar extends Component {
         })
     }
 
-
-    handleChangeSelect(event) {
+    handleChangeSelect = (event) => {
         this.setState({
             sort: event.target.value,
             sroffset: 0,
@@ -89,6 +93,7 @@ class SearchBar extends Component {
             this.setState(prevState => ({
                 suggestion: [...prevState.suggestion, inputValue],
             }))
+
         }
     }
 
@@ -97,7 +102,6 @@ class SearchBar extends Component {
             shouldSuggestion: !this.state.shouldSuggestion
         })
     }
-
 
 
     render() {
@@ -123,7 +127,7 @@ class SearchBar extends Component {
                     </ul>
                         <button type="submit"/>
                 </form>
-                <select value={this.state.sort} onChange={this.handleChangeSelect}>
+                <select value={this.state.sort} onChange={(event) => this.handleChangeSelect(event)}>
                     <option value="relevance">Relevance</option>
                     <option value="just_match">Just match</option>
                     <option value="none">None</option>
@@ -139,6 +143,9 @@ class SearchBar extends Component {
     }
 }
 
+SearchBar.propTypes = {
+    getArticles: PropTypes.func,
+};
 
 const mapDispatchToProps = dispatch => {
     return {

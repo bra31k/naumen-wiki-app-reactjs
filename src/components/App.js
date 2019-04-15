@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 import ArticleList from '../containers/ArticleList'
 import SearchBar from '../containers/SearchBar'
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="App">
           <SearchBar/>
           <ArticleList/>
       </div>
     );
-  }
 }
 
 export default App;

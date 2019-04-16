@@ -3,8 +3,7 @@ import connect from "react-redux/es/connect/connect"
 import PropTypes from "prop-types"
 
 import { getArticles } from '../actions/articlesActions'
-import '../style/SearchBar.css'
-
+import "../style/index.css"
 
 
 
@@ -55,14 +54,14 @@ class SearchBar extends Component {
     }
 
     onScroll = () => {
-        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight + 24)) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight + 15)) {
             this.setState({
-                sroffset: this.state.sroffset + 10
+                sroffset: this.state.sroffset + 10,
             })
         }
     }
 
-    suggestionClick(value) {
+    suggestionClick = (value) => {
         this.setState({
             inputValue: value,
             sroffset: 0,
@@ -83,7 +82,7 @@ class SearchBar extends Component {
             inputValue: inputValue,
             sroffset: 0,
         })
-        if (!this.state.suggestion.includes(inputValue))
+        if (!this.state.suggestion.includes(inputValue) && inputValue.length>0)
         {
             if (this.state.suggestion.length >= 3) {
                 this.setState({
@@ -93,11 +92,11 @@ class SearchBar extends Component {
             this.setState(prevState => ({
                 suggestion: [...prevState.suggestion, inputValue],
             }))
-
         }
+
     }
 
-    inputClick() {
+    inputClick = () => {
         this.setState({
             shouldSuggestion: !this.state.shouldSuggestion
         })
@@ -106,7 +105,7 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div>
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input
                         type="text"
@@ -115,17 +114,15 @@ class SearchBar extends Component {
                         autoComplete="off"
                         onClick={this.inputClick}
                     />
-                    <ul>
                         {this.state.shouldSuggestion
-                            ? this.state.suggestion.map(sug => (
+                            ? <ul>{this.state.suggestion.map(sug => (
                             <li key={this.state.suggestion.indexOf(sug)}
                                 onClick={() => this.suggestionClick(sug)}>
                                 {sug}
                             </li>
-                            ))
+                            ))}</ul>
                             : null}
-                    </ul>
-                        <button type="submit"/>
+                        <button type="submit" className="button"/>
                 </form>
                 <select value={this.state.sort} onChange={(event) => this.handleChangeSelect(event)}>
                     <option value="relevance">Relevance</option>
@@ -138,6 +135,7 @@ class SearchBar extends Component {
                     <option value="create_timestamp_asc">create_timestamp_asc</option>
                     <option value="create_timestamp_desc">create_timestamp_desc</option>
                 </select>
+                <button className="button-change-theme">Change theme</button>
             </div>
         );
     }

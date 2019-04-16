@@ -3,12 +3,18 @@ import React from 'react';
 
 import ArticleList from '../containers/ArticleList'
 import SearchBar from '../containers/SearchBar'
+import "../style/index.css"
+
 
 const App = () => {
     return (
-      <div className="App">
-          <SearchBar/>
-          <ArticleList/>
+      <div className="container">
+          <div className="header">
+            <SearchBar/>
+          </div>
+          <div className="content">
+            <ArticleList/>
+          </div>
       </div>
     );
 }

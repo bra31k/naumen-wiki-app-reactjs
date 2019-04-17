@@ -7,7 +7,7 @@ const href = 'https://en.wikipedia.org/wiki/'
 const Article = ({title, snippet}) =>  {
         return (
             <div className="article">
-                <h2><a href={href + title} target="_blank" rel="noopener noreferrer">{title}</a></h2>
+                <h3><a href={href + title} target="_blank" rel="noopener noreferrer">{title}</a></h3>
                 <p dangerouslySetInnerHTML={{__html: snippet}}/>
             </div>
         );

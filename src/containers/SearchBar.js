@@ -18,12 +18,14 @@ class SearchBar extends Component {
             sroffset: 10,
             suggestion: [],
             shouldSuggestion: false,
+            theme: 'light',
         }
 
         this.inputClick = this.inputClick.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.suggestionClick = this.suggestionClick.bind(this)
+        this.toggleTheme = this.toggleTheme.bind(this)
     }
 
     componentDidMount() {
@@ -102,6 +104,14 @@ class SearchBar extends Component {
         })
     }
 
+    toggleTheme = () => {
+        const theme = this.state.theme === 'dark' ? 'light' : 'dark';
+        this.setState({
+            theme: theme
+        });
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+
 
     render() {
         return (
@@ -128,14 +138,15 @@ class SearchBar extends Component {
                     <option value="relevance">Relevance</option>
                     <option value="just_match">Just match</option>
                     <option value="none">None</option>
-                    <option value="incoming_links_asc">incoming_links_asc</option>
-                    <option value="incoming_links_desc">incoming_links_desc</option>
-                    <option value="last_edit_asc">last_edit_asc</option>
-                    <option value="last_edit_desc">last_edit_desc</option>
-                    <option value="create_timestamp_asc">create_timestamp_asc</option>
-                    <option value="create_timestamp_desc">create_timestamp_desc</option>
+                    <option value="incoming_links_asc">Incoming links asc</option>
+                    <option value="incoming_links_desc">Incoming links esc</option>
+                    <option value="last_edit_asc">Last edit asc</option>
+                    <option value="last_edit_desc">Last edit desc</option>
+                    <option value="create_timestamp_asc">Create timestamp asc</option>
+                    <option value="create_timestamp_desc">Create timestamp desc</option>
                 </select>
-                <button className="button-change-theme">Change theme</button>
+                <button className="button-change-theme"
+                        onClick={this.toggleTheme}>Change theme</button>
             </div>
         );
     }

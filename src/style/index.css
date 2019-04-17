@@ -1,3 +1,20 @@
+html {
+    --primaryBackground: #ffffff;
+    --primaryTextColor: #1a1a1d;
+    --primaryBorderColor: #1a1a1d;
+}
+
+html[data-theme="dark"] {
+    --primaryBackground: #1a1a1d;
+    --primaryTextColor: #7b7b7b;
+    --primaryBorderColor: #7b7b7b;
+}
+
+body {
+    color: var(--primaryTextColor);
+    background-color: var(--primaryBackground);
+}
+
 .container {
     display: grid;
     width: 900px;
@@ -23,14 +40,16 @@
 .article {
     margin: 10px 10px 0 0;
     padding: 6px;
+    border-bottom: 1px double var(--primaryBorderColor)
 }
 
 .button-change-theme {
     float: left;
     margin: 10px;
     padding: 10px;
-    background: white;
-    border: 1px double black;
+    background: var(--primaryBackground);
+    color: var(--primaryTextColor);
+    border: 1px double var(--primaryBorderColor);
 }
 
 * {box-sizing: border-box;}
@@ -39,10 +58,9 @@
 form {
     float: left;
     position: relative;
-    border: 1px double black;
+    border: 1px double var(--primaryBorderColor);
     width: 500px;
     margin: 10px;
-    background: white;
 }
 
 input, .button {
@@ -62,8 +80,9 @@ select {
     float: left;
     margin: 10px;
     padding: 10px;
-    background: white;
-    border: 1px double black;
+    color: var(--primaryTextColor);
+    background: var(--primaryBackground);
+    border: 1px double var(--primaryBorderColor);
 }
 
 .button {
@@ -81,6 +100,12 @@ select {
     font-size: 16px;
     color: #F9F0DA;
 }
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+}
+
 
 li {
     list-style-type: none;

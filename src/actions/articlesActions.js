@@ -17,28 +17,36 @@ export const getArticles = (inputValue, sort, sroffset) => {
         axios.get(url, {
             params: {
                 action: 'query',
-                list: 'search',
-                srsearch: inputValue,
-                utf8: '',
                 format: 'json',
                 origin: '*' ,
-                srsort: sort,
+                list: 'search',
+                srsearch: inputValue,
                 sroffset: sroffset,
+                srsort: sort,
+                srlimit: 10,
             }
             }).then(resourse => {
                 if (resourse.status === 200){
                     if (resourse.headers['mediawiki-api-error'] === undefined) {
-                        if (resourse.data.continue.sroffset !== 10) {
-                            dispatch({
-                                type: GET_ARTICLES_ADD_SUCCESS,
-                                payload: resourse.data.query.search,
-                            });
+                        if (resourse.data.query.search.length !== 0) {
+                            if (resourse.data.continue.sroffset > 10) {
+                                dispatch({
+                                    type: GET_ARTICLES_ADD_SUCCESS,
+                                    payload: resourse.data.query.search,
+                                });
+                            }
+                            else {
+                                dispatch({
+                                    type: GET_ARTICLES_SUCCESS,
+                                    payload: resourse.data.query.search,
+                                })
+                            }
                         }
                         else {
                             dispatch({
-                                type: GET_ARTICLES_SUCCESS,
-                                payload: resourse.data.query.search,
-                            })
+                                type: GET_ARTICLES_FAIL,
+                                payload: 'по вашему запросу ничего не найдено',
+                            });
                         }
                     }
                     else {
@@ -55,7 +63,10 @@ export const getArticles = (inputValue, sort, sroffset) => {
                 }
             })
                 .catch(error => {
-                    throw(error.response);
+                    dispatch({
+                        type: GET_ARTICLES_FAIL,
+                        payload: error.toString(),
+                    });
                 })
 
     }

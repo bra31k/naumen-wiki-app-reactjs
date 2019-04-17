@@ -15,7 +15,7 @@ class SearchBar extends Component {
         this.state = {
             inputValue: "",
             sort: "relevance",
-            sroffset: 10,
+            sroffset: 0,
             suggestion: [],
             shouldSuggestion: false,
             theme: 'light',
@@ -56,7 +56,12 @@ class SearchBar extends Component {
     }
 
     onScroll = () => {
-        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight + 15)) {
+        const scrollHeight = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+        if ((document.documentElement.clientHeight + window.scrollY) >= (scrollHeight)) {
             this.setState({
                 sroffset: this.state.sroffset + 10,
             })

@@ -11,14 +11,14 @@ const ArticleList = ({articles}) => {
                 {articles.isLoading && articles.articles <= 10
                     ? <p>Загружаю....</p>
                     :
-                    articles.error.length === 0 ? articles.articles.map(article => {
-                        return (
-                            <Article
-                                title={article.title}
-                                snippet={article.snippet}
-                                key={article.pageid}
-                            />
-                        )})
+                    articles.error.length === 0 ? articles.articles.map((article, index) => {
+                            return (
+                                <Article
+                                    title={article.title}
+                                    snippet={article.snippet}
+                                    key={index}
+                                />
+                            )})
                         : <p>Произошла ошибка: {articles.error}</p>}
             </div>
         );

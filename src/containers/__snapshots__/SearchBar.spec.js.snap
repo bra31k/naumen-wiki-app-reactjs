@@ -1,0 +1,690 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar SearchBar initial SearchBar properly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SearchBar
+    getArticles={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <form
+          onSubmit={[Function]}
+        >
+          <input
+            autoComplete="off"
+            name="searchWiki"
+            onChange={[Function]}
+            placeholder="Искать здесь..."
+            type="text"
+            value=""
+          />
+          <button
+            className="button"
+            type="submit"
+          />
+        </form>,
+        <select
+          onChange={[Function]}
+          value="relevance"
+        >
+          <option
+            value="relevance"
+          >
+            Relevance
+          </option>
+          <option
+            value="just_match"
+          >
+            Just match
+          </option>
+          <option
+            value="none"
+          >
+            None
+          </option>
+          <option
+            value="incoming_links_asc"
+          >
+            Incoming links asc
+          </option>
+          <option
+            value="incoming_links_desc"
+          >
+            Incoming links esc
+          </option>
+          <option
+            value="last_edit_asc"
+          >
+            Last edit asc
+          </option>
+          <option
+            value="last_edit_desc"
+          >
+            Last edit desc
+          </option>
+          <option
+            value="create_timestamp_asc"
+          >
+            Create timestamp asc
+          </option>
+          <option
+            value="create_timestamp_desc"
+          >
+            Create timestamp desc
+          </option>
+        </select>,
+        <button
+          className="button-change-theme"
+          onClick={[Function]}
+        >
+          Change theme
+        </button>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <input
+              autoComplete="off"
+              name="searchWiki"
+              onChange={[Function]}
+              placeholder="Искать здесь..."
+              type="text"
+              value=""
+            />,
+            null,
+            <button
+              className="button"
+              type="submit"
+            />,
+          ],
+          "onSubmit": [Function],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "autoComplete": "off",
+              "name": "searchWiki",
+              "onChange": [Function],
+              "placeholder": "Искать здесь...",
+              "type": "text",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+          null,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "button",
+              "type": "submit",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "button",
+          },
+        ],
+        "type": "form",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <option
+              value="relevance"
+            >
+              Relevance
+            </option>,
+            <option
+              value="just_match"
+            >
+              Just match
+            </option>,
+            <option
+              value="none"
+            >
+              None
+            </option>,
+            <option
+              value="incoming_links_asc"
+            >
+              Incoming links asc
+            </option>,
+            <option
+              value="incoming_links_desc"
+            >
+              Incoming links esc
+            </option>,
+            <option
+              value="last_edit_asc"
+            >
+              Last edit asc
+            </option>,
+            <option
+              value="last_edit_desc"
+            >
+              Last edit desc
+            </option>,
+            <option
+              value="create_timestamp_asc"
+            >
+              Create timestamp asc
+            </option>,
+            <option
+              value="create_timestamp_desc"
+            >
+              Create timestamp desc
+            </option>,
+          ],
+          "onChange": [Function],
+          "value": "relevance",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Relevance",
+              "value": "relevance",
+            },
+            "ref": null,
+            "rendered": "Relevance",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Just match",
+              "value": "just_match",
+            },
+            "ref": null,
+            "rendered": "Just match",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "None",
+              "value": "none",
+            },
+            "ref": null,
+            "rendered": "None",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Incoming links asc",
+              "value": "incoming_links_asc",
+            },
+            "ref": null,
+            "rendered": "Incoming links asc",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Incoming links esc",
+              "value": "incoming_links_desc",
+            },
+            "ref": null,
+            "rendered": "Incoming links esc",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Last edit asc",
+              "value": "last_edit_asc",
+            },
+            "ref": null,
+            "rendered": "Last edit asc",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Last edit desc",
+              "value": "last_edit_desc",
+            },
+            "ref": null,
+            "rendered": "Last edit desc",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Create timestamp asc",
+              "value": "create_timestamp_asc",
+            },
+            "ref": null,
+            "rendered": "Create timestamp asc",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Create timestamp desc",
+              "value": "create_timestamp_desc",
+            },
+            "ref": null,
+            "rendered": "Create timestamp desc",
+            "type": "option",
+          },
+        ],
+        "type": "select",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Change theme",
+          "className": "button-change-theme",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Change theme",
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <form
+            onSubmit={[Function]}
+          >
+            <input
+              autoComplete="off"
+              name="searchWiki"
+              onChange={[Function]}
+              placeholder="Искать здесь..."
+              type="text"
+              value=""
+            />
+            <button
+              className="button"
+              type="submit"
+            />
+          </form>,
+          <select
+            onChange={[Function]}
+            value="relevance"
+          >
+            <option
+              value="relevance"
+            >
+              Relevance
+            </option>
+            <option
+              value="just_match"
+            >
+              Just match
+            </option>
+            <option
+              value="none"
+            >
+              None
+            </option>
+            <option
+              value="incoming_links_asc"
+            >
+              Incoming links asc
+            </option>
+            <option
+              value="incoming_links_desc"
+            >
+              Incoming links esc
+            </option>
+            <option
+              value="last_edit_asc"
+            >
+              Last edit asc
+            </option>
+            <option
+              value="last_edit_desc"
+            >
+              Last edit desc
+            </option>
+            <option
+              value="create_timestamp_asc"
+            >
+              Create timestamp asc
+            </option>
+            <option
+              value="create_timestamp_desc"
+            >
+              Create timestamp desc
+            </option>
+          </select>,
+          <button
+            className="button-change-theme"
+            onClick={[Function]}
+          >
+            Change theme
+          </button>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <input
+                autoComplete="off"
+                name="searchWiki"
+                onChange={[Function]}
+                placeholder="Искать здесь..."
+                type="text"
+                value=""
+              />,
+              null,
+              <button
+                className="button"
+                type="submit"
+              />,
+            ],
+            "onSubmit": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "autoComplete": "off",
+                "name": "searchWiki",
+                "onChange": [Function],
+                "placeholder": "Искать здесь...",
+                "type": "text",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+            null,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "button",
+                "type": "submit",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "button",
+            },
+          ],
+          "type": "form",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <option
+                value="relevance"
+              >
+                Relevance
+              </option>,
+              <option
+                value="just_match"
+              >
+                Just match
+              </option>,
+              <option
+                value="none"
+              >
+                None
+              </option>,
+              <option
+                value="incoming_links_asc"
+              >
+                Incoming links asc
+              </option>,
+              <option
+                value="incoming_links_desc"
+              >
+                Incoming links esc
+              </option>,
+              <option
+                value="last_edit_asc"
+              >
+                Last edit asc
+              </option>,
+              <option
+                value="last_edit_desc"
+              >
+                Last edit desc
+              </option>,
+              <option
+                value="create_timestamp_asc"
+              >
+                Create timestamp asc
+              </option>,
+              <option
+                value="create_timestamp_desc"
+              >
+                Create timestamp desc
+              </option>,
+            ],
+            "onChange": [Function],
+            "value": "relevance",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Relevance",
+                "value": "relevance",
+              },
+              "ref": null,
+              "rendered": "Relevance",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Just match",
+                "value": "just_match",
+              },
+              "ref": null,
+              "rendered": "Just match",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "None",
+                "value": "none",
+              },
+              "ref": null,
+              "rendered": "None",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Incoming links asc",
+                "value": "incoming_links_asc",
+              },
+              "ref": null,
+              "rendered": "Incoming links asc",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Incoming links esc",
+                "value": "incoming_links_desc",
+              },
+              "ref": null,
+              "rendered": "Incoming links esc",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Last edit asc",
+                "value": "last_edit_asc",
+              },
+              "ref": null,
+              "rendered": "Last edit asc",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Last edit desc",
+                "value": "last_edit_desc",
+              },
+              "ref": null,
+              "rendered": "Last edit desc",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Create timestamp asc",
+                "value": "create_timestamp_asc",
+              },
+              "ref": null,
+              "rendered": "Create timestamp asc",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Create timestamp desc",
+                "value": "create_timestamp_desc",
+              },
+              "ref": null,
+              "rendered": "Create timestamp desc",
+              "type": "option",
+            },
+          ],
+          "type": "select",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Change theme",
+            "className": "button-change-theme",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Change theme",
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;

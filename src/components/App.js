@@ -6,7 +6,7 @@ import SearchBar from '../containers/SearchBar'
 import "../style/index.css"
 
 
-const App = () => {
+export const App = () => {
     return (
       <div className="container">
           <div className="header">

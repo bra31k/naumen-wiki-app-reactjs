@@ -4,7 +4,7 @@ import "../style/index.css"
 
 const href = 'https://en.wikipedia.org/wiki/'
 
-const Article = ({title, snippet}) =>  {
+export const Article = ({title, snippet}) =>  {
         return (
             <div className="article">
                 <h3><a href={href + title} target="_blank" rel="noopener noreferrer">{title}</a></h3>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import connect from "react-redux/es/connect/connect"
+import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
 import { getArticles } from '../actions/articlesActions'
@@ -7,13 +7,14 @@ import "../style/index.css"
 
 
 
-class SearchBar extends Component {
+export class SearchBar extends Component {
 
     constructor(props) {
 
         super(props)
         this.state = {
             inputValue: "",
+            searchValue: "",
             sort: "relevance",
             sroffset: 0,
             suggestion: [],
@@ -21,11 +22,11 @@ class SearchBar extends Component {
             theme: 'light',
         }
 
-        this.inputClick = this.inputClick.bind(this)
         this.handleChangeSelect = this.handleChangeSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.suggestionClick = this.suggestionClick.bind(this)
         this.toggleTheme = this.toggleTheme.bind(this)
+        this.handleChangeInput = this.handleChangeInput.bind(this)
     }
 
     componentDidMount() {
@@ -41,12 +42,12 @@ class SearchBar extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if ((prevState.inputValue !== this.state.inputValue
+        if ((prevState.searchValue !== this.state.searchValue
             || prevState.sort !== this.state.sort
             || prevState.sroffset !== this.state.sroffset )
             && this.state.inputValue.length > 0)
         {
-            this.props.getArticles(this.state.inputValue, this.state.sort, this.state.sroffset)
+            this.props.getArticles(this.state.searchValue, this.state.sort, this.state.sroffset)
             localStorage.setItem('naumen-wiki-app', JSON.stringify(this.state.suggestion))
         }
     }
@@ -55,22 +56,10 @@ class SearchBar extends Component {
         window.removeEventListener('scroll', this.onScroll, false);
     }
 
-    onScroll = () => {
-        const scrollHeight = Math.max(
-            document.body.scrollHeight, document.documentElement.scrollHeight,
-            document.body.offsetHeight, document.documentElement.offsetHeight,
-            document.body.clientHeight, document.documentElement.clientHeight
-        );
-        if ((document.documentElement.clientHeight + window.scrollY) >= (scrollHeight)) {
-            this.setState({
-                sroffset: this.state.sroffset + 10,
-            })
-        }
-    }
-
     suggestionClick = (value) => {
         this.setState({
             inputValue: value,
+            searchValue: value,
             sroffset: 0,
         })
     }
@@ -84,9 +73,9 @@ class SearchBar extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const inputValue = event.target.searchWiki.value;
+        const inputValue = this.state.inputValue
         this.setState({
-            inputValue: inputValue,
+            searchValue: inputValue,
             sroffset: 0,
         })
         if (!this.state.suggestion.includes(inputValue) && inputValue.length>0)
@@ -103,10 +92,10 @@ class SearchBar extends Component {
 
     }
 
-    inputClick = () => {
+    handleChangeInput = (event) => {
         this.setState({
-            shouldSuggestion: !this.state.shouldSuggestion
-        })
+            inputValue: event.target.value
+        });
     }
 
     toggleTheme = () => {
@@ -115,6 +104,19 @@ class SearchBar extends Component {
             theme: theme
         });
         document.documentElement.setAttribute("data-theme", theme);
+    }
+
+    onScroll = () => {
+        const scrollHeight = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+        if ((document.documentElement.clientHeight + window.scrollY) >= (scrollHeight)) {
+            this.setState({
+                sroffset: this.state.sroffset + 10,
+            })
+        }
     }
 
 
@@ -127,9 +129,10 @@ class SearchBar extends Component {
                         name="searchWiki"
                         placeholder="Искать здесь..."
                         autoComplete="off"
-                        onClick={this.inputClick}
+                        value={this.state.inputValue}
+                        onChange={this.handleChangeInput}
                     />
-                        {this.state.shouldSuggestion
+                        {this.state.inputValue.length > 0
                             ? <ul>{this.state.suggestion.map(sug => (
                             <li key={this.state.suggestion.indexOf(sug)}
                                 onClick={() => this.suggestionClick(sug)}>

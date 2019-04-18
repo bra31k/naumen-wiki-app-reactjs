@@ -5,13 +5,12 @@ import PropTypes from "prop-types"
 import Article from '../components/Article'
 
 
-const ArticleList = ({articles}) => {
+export const ArticleList = ({articles}) => {
         return (
             <div>
-                {articles.isLoading && articles.articles <= 10
+                {articles.isLoading && articles.articles.length <= 10
                     ? <p>Загружаю....</p>
-                    :
-                    articles.error === null ? articles.articles.map((article, index) => {
+                    : articles.error === null ? articles.articles.map((article, index) => {
                             return (
                                 <Article
                                     title={article.title}
@@ -29,7 +28,7 @@ ArticleList.propTypes = {
     error: PropTypes.string,
     articles: PropTypes.object,
     title: PropTypes.string,
-    snipped: PropTypes.string,
+    snippet: PropTypes.string,
 };
 
 const mapStateToProps = store => {

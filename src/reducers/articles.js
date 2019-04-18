@@ -5,17 +5,17 @@ import {
     GET_ARTICLES_ADD_SUCCESS,
 } from '../actions/articlesActions'
 
-const initialState = {
+export const initialState = {
     articles: [],
     isLoading: false,
-    error: "",
+    error: null,
 }
 
 export function articleReducer(state = initialState, action) {
     switch (action.type) {
 
         case GET_ARTICLES_REQUEST:
-            return { ...state, isLoading: true, error: "" }
+            return { ...state, isLoading: true, error: null }
 
         case  GET_ARTICLES_SUCCESS:
             return { ...state, isLoading: false, articles: action.payload }

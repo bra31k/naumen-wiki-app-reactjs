@@ -11,7 +11,7 @@ const ArticleList = ({articles}) => {
                 {articles.isLoading && articles.articles <= 10
                     ? <p>Загружаю....</p>
                     :
-                    articles.error.length === 0 ? articles.articles.map((article, index) => {
+                    articles.error === null ? articles.articles.map((article, index) => {
                             return (
                                 <Article
                                     title={article.title}

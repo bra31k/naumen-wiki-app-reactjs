@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 
 describe('ArticleList', () => {
     const props = {
-        articles: {
+        store: {
             isLoading: false,
             error: null,
             articles: [],
@@ -23,7 +23,7 @@ describe('ArticleList', () => {
     describe('ArticleList isLoading', () => {
 
         let nextProps = {
-            articles: {
+            store: {
                 isLoading: true,
                 error: null,
                 articles: [
@@ -46,7 +46,7 @@ describe('ArticleList', () => {
     describe('ArticleList error', () => {
 
         let nextProps = {
-            articles: {
+            store: {
                 isLoading: false,
                 error: 'error',
                 articles: [
@@ -62,14 +62,14 @@ describe('ArticleList', () => {
         })
 
         it('renders error', () => {
-            expect(articleList.find('p').first().text()).toEqual(`Произошла ошибка: ${nextProps.articles.error}`)
+            expect(articleList.find('p').first().text()).toEqual(`Произошла ошибка: ${nextProps.store.error}`)
         })
     })
 
     describe('ArticleList render Article', () => {
 
         let nextProps = {
-            articles: {
+            store: {
                 isLoading: false,
                 error: null,
                 articles: [
@@ -85,7 +85,7 @@ describe('ArticleList', () => {
         })
 
         it('renders Article', () => {
-            expect(articleList.find('Article')).toHaveLength(nextProps.articles.articles.length)
+            expect(articleList.find('Article')).toHaveLength(nextProps.store.articles.length)
         })
     })
 

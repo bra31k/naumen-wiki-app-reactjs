@@ -26,7 +26,7 @@ ShallowWrapper {
         >
           <input
             autoComplete="off"
-            name="searchWiki"
+            id="search"
             onChange={[Function]}
             placeholder="Искать здесь..."
             type="text"
@@ -89,6 +89,7 @@ ShallowWrapper {
         </select>,
         <button
           className="button-change-theme"
+          id="button-change-theme"
           onClick={[Function]}
         >
           Change theme
@@ -105,7 +106,7 @@ ShallowWrapper {
           "children": Array [
             <input
               autoComplete="off"
-              name="searchWiki"
+              id="search"
               onChange={[Function]}
               placeholder="Искать здесь..."
               type="text"
@@ -127,7 +128,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "autoComplete": "off",
-              "name": "searchWiki",
+              "id": "search",
               "onChange": [Function],
               "placeholder": "Искать здесь...",
               "type": "text",
@@ -328,6 +329,7 @@ ShallowWrapper {
         "props": Object {
           "children": "Change theme",
           "className": "button-change-theme",
+          "id": "button-change-theme",
           "onClick": [Function],
         },
         "ref": null,
@@ -349,7 +351,7 @@ ShallowWrapper {
           >
             <input
               autoComplete="off"
-              name="searchWiki"
+              id="search"
               onChange={[Function]}
               placeholder="Искать здесь..."
               type="text"
@@ -412,6 +414,7 @@ ShallowWrapper {
           </select>,
           <button
             className="button-change-theme"
+            id="button-change-theme"
             onClick={[Function]}
           >
             Change theme
@@ -428,7 +431,7 @@ ShallowWrapper {
             "children": Array [
               <input
                 autoComplete="off"
-                name="searchWiki"
+                id="search"
                 onChange={[Function]}
                 placeholder="Искать здесь..."
                 type="text"
@@ -450,7 +453,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "autoComplete": "off",
-                "name": "searchWiki",
+                "id": "search",
                 "onChange": [Function],
                 "placeholder": "Искать здесь...",
                 "type": "text",
@@ -651,6 +654,7 @@ ShallowWrapper {
           "props": Object {
             "children": "Change theme",
             "className": "button-change-theme",
+            "id": "button-change-theme",
             "onClick": [Function],
           },
           "ref": null,

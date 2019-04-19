@@ -45,7 +45,7 @@ export class SearchBar extends Component {
         if ((prevState.searchValue !== this.state.searchValue
             || prevState.sort !== this.state.sort
             || prevState.sroffset !== this.state.sroffset )
-            && this.state.inputValue.length > 0)
+            && this.state.searchValue.length > 0)
         {
             this.props.getArticles(this.state.searchValue, this.state.sort, this.state.sroffset)
             localStorage.setItem('naumen-wiki-app', JSON.stringify(this.state.suggestion))
@@ -126,7 +126,7 @@ export class SearchBar extends Component {
                 <form onSubmit={(event) => this.handleSubmit(event)}>
                     <input
                         type="text"
-                        name="searchWiki"
+                        id="search"
                         placeholder="Искать здесь..."
                         autoComplete="off"
                         value={this.state.inputValue}
@@ -153,8 +153,7 @@ export class SearchBar extends Component {
                     <option value="create_timestamp_asc">Create timestamp asc</option>
                     <option value="create_timestamp_desc">Create timestamp desc</option>
                 </select>
-                <button className="button-change-theme"
-                        onClick={this.toggleTheme}>Change theme</button>
+                <button id='button-change-theme' className="button-change-theme" onClick={this.toggleTheme}>Change theme</button>
             </div>
         );
     }
